@@ -4,7 +4,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Background {
 
-    private final Picture mainMenuBackground = new Picture(5, 5, "resources/start_screen.png");
+    private final Picture mainMenuBackground = new Picture(5, 5, "/Users/codecadet/Documents/OurGameRepo/GameJamv2/MarioBird/resources/mainmenu.png");
     private final Picture gameOver = new Picture (5, 5, "resources/gameover_mario.JPG");
     private final Picture gameRunningSky = new Picture (5, 5, "resources/background2.jpg");
     private final Picture gameRunningFire = new Picture(5, 5, "resources/fire_bottom.png");

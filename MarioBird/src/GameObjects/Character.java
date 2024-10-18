@@ -27,11 +27,11 @@ public class Character extends AbstractUnitPosition implements Runnable {
         characterWidth = 15;
         characterHeight = 30;
         simpleGxGrid = grid;
-        terminalVelocity = 4; // gravidade
+        terminalVelocity = 3; // gravidade
         double x = grid.columnToX(col);
         double y = grid.rowToY(row);
         rectangle = new Rectangle(x, y, characterWidth, characterHeight);
-        picture = new Picture(x - 30, y - 15, characters[0]);
+        picture = new Picture(x, y + 100, characters[0]);
     }
 
     public int getCharacterWidth() {

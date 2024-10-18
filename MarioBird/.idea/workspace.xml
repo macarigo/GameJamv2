@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c79023d-d5e9-4c4c-aa06-23d45ad45a2f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarioBird.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MarioBird.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/CollisionDetector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/CollisionDetector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameEngine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameEngine.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Character.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Character.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/DisplayScore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/DisplayScore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Grid/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Grid/Grid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Grid/GridDirection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Grid/GridDirection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Grid/Position/AbstractUnitPosition.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Grid/Position/AbstractUnitPosition.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Grid/Position/GridPosition.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Grid/Position/GridPosition.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Grid/SimpleGxGrid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Grid/SimpleGxGrid.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Menu/Background.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Menu/Background.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Scoreline.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Scoreline.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Structures/Tubes.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Structures/Tubes.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameObjects/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObjects/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameObjects/Menu/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObjects/Menu/Background.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameObjects/Structures/Tubes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObjects/Structures/Tubes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1729267387632</updated>
-      <workItem from="1729267388711" duration="2214000" />
+      <workItem from="1729267388711" duration="3290000" />
     </task>
     <servers />
   </component>
