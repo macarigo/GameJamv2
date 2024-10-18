@@ -14,6 +14,7 @@ public class Scoreline {
     private final double padding;
     private boolean reset;
     private boolean canScore;
+    private static boolean scored;
 
 
     public Scoreline(SimpleGxGrid grid, Tubes tube) {
@@ -38,9 +39,9 @@ public class Scoreline {
     }
 
 
-    public void show() {
+/*    public void show() {
         line.draw();
-    }
+    }*/
 
     public void hide() {
         line.delete();
@@ -51,20 +52,29 @@ public class Scoreline {
         x = tube.getInitialX();
     }
 
-    public void setCanScore(boolean canScore) {
+/*    public void setCanScore(boolean canScore) {
         this.canScore = canScore;
-    }
+    }*/
 
-    public void setReset(boolean reset) {
+/*    public void setReset(boolean reset) {
         this.reset = reset;
     }
 
     public boolean isReset() {
         return reset;
-    }
+    }*/
 
     public boolean canScore() {
-        return canScore;
+        return !scored;
+    }
+
+    public static void resetScoreLine(){
+        scored = false;
+    }
+
+    public void setScored(){
+        canScore = false;
+        scored = true;
     }
 
 

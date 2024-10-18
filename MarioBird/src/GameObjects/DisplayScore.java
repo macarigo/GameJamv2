@@ -15,12 +15,12 @@ public class DisplayScore {
 
 
     public DisplayScore(SimpleGxGrid grid) {
-        score = "Score: 0";
+        score = "Score: " + currentScore;
         currentScore = 0;
     }
-    public int getCurrentScore(){
+/*    public int getCurrentScore(){
         return currentScore;
-    }
+    }*/
 
     public void draw(){
         displayHighscore.delete();

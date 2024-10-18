@@ -41,11 +41,10 @@ public class CollisionDetector {
         for (Scoreline line : scoreline) {
             if (character.getX() >= line.getX() && line.canScore()) {
                 score.setScore();
-                line.setCanScore(false);
-            } else if (line.isReset()) {
-                line.setCanScore(true);
-                line.setReset(false);
+                line.setScored();
+            } //else if (line.isReset()) {
+                //line.setCanScore(true);
+                //line.setReset(false);
             }
         }
-    }
 }
