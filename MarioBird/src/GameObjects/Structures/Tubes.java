@@ -27,7 +27,10 @@ public class Tubes extends AbstractUnitPosition{
     private final double gap = 150;
     private boolean isMoving;
     private final int[] heights = new int[]{430, 270, 150, 50};
-    private final String[] pictures = new String[]{"resources/tube_low.png", "resources/tube_mid.png", "resources/tube_high.png", "resources/tube_vhigh.png"};
+    private final String[] pictures = new String[]{"resources/tube_low.png",
+            "resources/tube_mid.png",
+            "resources/tube_high.png",
+            "resources/tube_vhigh.png"};
 
     public Tubes(double col, double row, double height, SimpleGxGrid grid) { //graphical constructor
         super(col, row, grid);

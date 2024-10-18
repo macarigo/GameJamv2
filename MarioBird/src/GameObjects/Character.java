@@ -17,10 +17,10 @@ public class Character extends AbstractUnitPosition implements Runnable {
     private final double terminalVelocity;
     private final int characterWidth;
     private final int characterHeight;
-    private String [] characters = new String[]{"MarioBird/resources/mario.png",
-            "GameJam-main/resourcesAtual/wario.jpg",
-            "GameJam-main/resourcesAtual/luigi.png",
-            "GameJam-main/resourcesAtual/turtle.png"};
+    private String [] characters = new String[]{"/Users/codecadet/Documents/OurGameRepo/GameJamv2/MarioBird/resources/mario.png",
+            "/Users/codecadet/Documents/OurGameRepo/GameJamv2/MarioBird/resources/luigi.png",
+            "/Users/codecadet/Documents/OurGameRepo/GameJamv2/MarioBird/resources/wario.png",
+            "/Users/codecadet/Documents/OurGameRepo/GameJamv2/MarioBird/resources/turtle.png"};
 
     public Character(double col, double row, SimpleGxGrid grid) {
         super(col, row, grid);
@@ -98,7 +98,7 @@ public class Character extends AbstractUnitPosition implements Runnable {
 
     @Override
     public void run() {
-        /*if (!simpleGxGrid.isOutOfBoundsBot(this)) {
+        if (!simpleGxGrid.isOutOfBoundsBot(this)) {
             if (!moving) {
                 if (speed == terminalVelocity) {
                     rectangle.translate(0, speed);
@@ -133,7 +133,7 @@ public class Character extends AbstractUnitPosition implements Runnable {
                 }
                 moving = false;
             }
-        }*/
+        }
 
     }
 
