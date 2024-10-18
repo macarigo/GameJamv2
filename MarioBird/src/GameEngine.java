@@ -60,13 +60,19 @@ public class GameEngine{
         grid.init();
         background.renderMainMenu();
         controller.setCharacter(character);
+        controller.setBackground(background);
         controller.init();
         gameState();
     }
     public void gameState(){
 
         while(true){
-            System.out.println();
+
+            if(!gameRunning){
+                background.renderMainMenu();
+                character.render();
+            }
+
             if(gameRunning) {
                 if(background.getGameOver()!= null){
                     background.hideGameOver();
@@ -74,10 +80,10 @@ public class GameEngine{
                 background.hideMainMenu();
                 background.renderGameRunning();
 
-                character.render();
+
+                character.bringToFront();
                 displayScore.draw();
                 for (Tubes tube: tubeArray) {
-
                     tube.show();
                 }
                 run();

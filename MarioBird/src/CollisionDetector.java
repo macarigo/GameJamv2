@@ -23,11 +23,11 @@ public class CollisionDetector {
     public boolean isCrashed() {
         for (Tubes tube : tubs) {
 
-            if ((character.getX() + character.getMarioWidth() >= tube.getXBot() &&
+            if ((character.getX() + character.getCharacterWidth() >= tube.getXBot() &&
                     character.getX() <= tube.getXBot() + tube.getWidth() &&
-                    character.getY() + character.getMarioHeight() >= tube.getYBot())) {
+                    character.getY() + character.getCharacterHeight() >= tube.getYBot())) {
                 return true;
-            } else if (character.getX() + character.getMarioWidth() >= tube.getXTop() &&
+            } else if (character.getX() + character.getCharacterWidth() >= tube.getXTop() &&
                     character.getX() <= tube.getXTop() + tube.getWidth() &&
                     character.getY() <= tube.getYTop() + tube.getHeightTop()) {
                 return true;

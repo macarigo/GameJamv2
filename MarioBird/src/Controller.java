@@ -1,4 +1,5 @@
 import GameObjects.Character;
+import GameObjects.Menu.Background;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -8,6 +9,9 @@ public class Controller implements KeyboardHandler {
 
     private Character character;
     private GameEngine gameEngine;
+    private int choice = 0;
+    private Background background;
+
 
     public void init() {
         Keyboard keyboard = new Keyboard(this);
@@ -33,6 +37,15 @@ public class Controller implements KeyboardHandler {
         pressedEnter.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
         keyboard.addEventListener(pressedEnter);
 
+        KeyboardEvent moveRight = new KeyboardEvent();
+        moveRight.setKey(KeyboardEvent.KEY_RIGHT);
+        moveRight.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        keyboard.addEventListener(moveRight);
+
+        KeyboardEvent moveLeft = new KeyboardEvent();
+        moveLeft.setKey(KeyboardEvent.KEY_LEFT);
+        moveLeft.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        keyboard.addEventListener(moveLeft);
 
     }
 
@@ -50,6 +63,24 @@ public class Controller implements KeyboardHandler {
             gameEngine.setGamerunning(true);
         }
 
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_RIGHT) {
+            if (!gameEngine.isGameRunning()) {
+                character.setCharacter(choice++);
+                background.hideMainMenu();
+                character.hide();
+                background.renderMainMenu();
+                character.render();
+            }
+        }
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_LEFT) {
+            if (!gameEngine.isGameRunning()) {
+                character.setCharacter(choice--);
+                background.hideMainMenu();
+                character.hide();
+                background.renderMainMenu();
+                character.render();
+            }
+        }
     }
 
     @Override
@@ -65,5 +96,9 @@ public class Controller implements KeyboardHandler {
 
     public void setGameEngine(GameEngine gameEngine) {
         this.gameEngine = gameEngine;
+    }
+
+    public void setBackground(Background background) {
+        this.background = background;
     }
 }

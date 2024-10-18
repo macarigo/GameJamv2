@@ -9,33 +9,37 @@ public class Character extends AbstractUnitPosition implements Runnable {
 
     private double speed = 3; //Not decided yet
     private final Rectangle rectangle;
-    private final Picture picture;
+    private Picture picture;
     private final SimpleGxGrid simpleGxGrid;
     private boolean moving = false;
     private double x;
     private double y;
     private final double terminalVelocity;
-    private final int marioWidth;
-    private final int marioHeight;
+    private final int characterWidth;
+    private final int characterHeight;
+    private String [] characters = new String[]{"MarioBird/resources/mario.png",
+            "GameJam-main/resourcesAtual/wario.jpg",
+            "GameJam-main/resourcesAtual/luigi.png",
+            "GameJam-main/resourcesAtual/turtle.png"};
 
     public Character(double col, double row, SimpleGxGrid grid) {
         super(col, row, grid);
-        marioWidth = 15;
-        marioHeight = 30;
+        characterWidth = 15;
+        characterHeight = 30;
         simpleGxGrid = grid;
         terminalVelocity = 4; // gravidade
         double x = grid.columnToX(col);
         double y = grid.rowToY(row);
-        rectangle = new Rectangle(x, y, marioWidth, marioHeight);
-        picture = new Picture(x - 30, y - 15, "resources/mario.png");
+        rectangle = new Rectangle(x, y, characterWidth, characterHeight);
+        picture = new Picture(x - 30, y - 15, characters[0]);
     }
 
-    public int getMarioWidth() {
-        return marioWidth;
+    public int getCharacterWidth() {
+        return characterWidth;
     }
 
-    public int getMarioHeight() {
-        return marioHeight;
+    public int getCharacterHeight() {
+        return characterHeight;
     }
 
     public double getColumn() {
@@ -52,7 +56,7 @@ public class Character extends AbstractUnitPosition implements Runnable {
     }
 
     public void render() {
-        picture.draw();
+        if(picture!= null) picture.draw();
     }
 
     @Override
@@ -94,7 +98,7 @@ public class Character extends AbstractUnitPosition implements Runnable {
 
     @Override
     public void run() {
-        if (!simpleGxGrid.isOutOfBoundsBot(this)) {
+        /*if (!simpleGxGrid.isOutOfBoundsBot(this)) {
             if (!moving) {
                 if (speed == terminalVelocity) {
                     rectangle.translate(0, speed);
@@ -118,7 +122,7 @@ public class Character extends AbstractUnitPosition implements Runnable {
             }
         }
         if (moving) {
-            speed = 2; // altura do salto
+            speed = 3; // altura do salto
             double temp = 0;
             double dy = 5; // salto
             if (!simpleGxGrid.isOutOfBoundsTop(this)) {
@@ -129,7 +133,19 @@ public class Character extends AbstractUnitPosition implements Runnable {
                 }
                 moving = false;
             }
-        }
+        }*/
+
+    }
+
+
+    public void bringToFront() {
+        picture.delete();
+        picture.draw();
+    }
+
+    public void setCharacter(int choice) {
+        System.out.println(Math.abs(choice%characters.length));
+        picture = new Picture(picture.getX(),picture.getY(),characters[Math.abs(choice%characters.length)]);
 
     }
 }
