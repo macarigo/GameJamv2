@@ -6,7 +6,7 @@ import GameObjects.Scoreline;
 import GameObjects.Structures.Tubes;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class GameEngine{
+public class GameEngine {
 
     private SimpleGxGrid grid;
     private Background background;
@@ -24,6 +24,12 @@ public class GameEngine{
     private boolean gameRunning;
     private boolean isGameOver;
 
+    public void setMainMenu(boolean mainMenu) {
+        isMainMenu = mainMenu;
+    }
+
+    private boolean isMainMenu = true;
+
     public void setGamerunning(boolean gameRunning) {
         this.gameRunning = gameRunning;
     }
@@ -39,12 +45,12 @@ public class GameEngine{
     public void init() {
         grid = new SimpleGxGrid(73, 45);
         background = new Background();
-        character = new Character(10, 10, grid);
+        character = new Character(10, 16, grid);
 
         //lots of tubes
         tubes1 = new Tubes(70, 0, grid);
         tubes2 = new Tubes(48.33d, 0, grid);
-        tubes3 = new Tubes(26.67d, 0,175, grid);
+        tubes3 = new Tubes(26.67d, 0, 175, grid);
         tubeArray = new Tubes[]{tubes1, tubes2, tubes3};
         displayScore = new DisplayScore(grid);
 
@@ -64,34 +70,34 @@ public class GameEngine{
         controller.init();
         gameState();
     }
-    public void gameState(){
 
-        while(true){
+    public void gameState() {
 
-            if(!gameRunning){
+        while (true) {
+
+            if (isMainMenu) {
                 background.renderMainMenu();
                 character.render();
+                init();
             }
 
-            if(gameRunning) {
-                if(background.getGameOver()!= null){
+            if (gameRunning) {
+                if (background.getGameOver() != null) {
                     background.hideGameOver();
                 }
                 background.hideMainMenu();
                 background.renderGameRunning();
-
-
                 character.bringToFront();
                 displayScore.draw();
-                for (Tubes tube: tubeArray) {
+
+                for (Tubes tube : tubeArray) {
                     tube.show();
                 }
                 run();
                 break;
             }
-            if(isGameOver){
-                isGameOver = false;
-                init();
+            if (isGameOver) {
+                background.gameOver();
 
             }
         }
@@ -116,17 +122,18 @@ public class GameEngine{
             }
             collisionDetector.incrementScore();
 
-/*            if (displayScore.getCurrentScore() % 5 == 0 && displayScore.getCurrentScore() != 0) {
+            /* if (displayScore.getCurrentScore() % 5 == 0 && displayScore.getCurrentScore() != 0) {
                 for (Tubes tube : tubeArray) {
                     tube.setSpeed();
                 }
             }*/
             if (grid.isOutOfBoundsBot(character) || grid.isOutOfBoundsTop(character) || collisionDetector.isCrashed()) {
-                background.gameOver();
                 gameOver();
                 gameRunning = false;
+                isMainMenu = false;
                 displayScore.resetScore();
                 displayScore.displayHighscore();
+                isGameOver = true;
                 break;
             }
             if (timestamp - oldTimestamp <= maxLoopTime) {
@@ -144,6 +151,7 @@ public class GameEngine{
     public void setGameOver(boolean gameOver) {
         isGameOver = gameOver;
     }
+
     public void gameOver() {
         for (Tubes tube : tubeArray) {
             tube.hide();

@@ -56,11 +56,15 @@ public class Controller implements KeyboardHandler {
         }
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_R) {
-            gameEngine.setGameOver(true);
+            gameEngine.setGameOver(false);
+            gameEngine.setMainMenu(true);
+            gameEngine.setGamerunning(false);
         }
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_ENTER) {
             gameEngine.setGamerunning(true);
+            gameEngine.setMainMenu(false);
+            gameEngine.setGameOver(false);
         }
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_RIGHT) {
