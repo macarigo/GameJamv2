@@ -17,10 +17,10 @@ public class Character extends AbstractUnitPosition implements Runnable {
     private final double terminalVelocity;
     private final int characterWidth;
     private final int characterHeight;
-    private String [] characters = new String[]{"/Users/codecadet/Documents/OurGameRepo/GameJamv2/MarioBird/resources/mario.png",
-            "/Users/codecadet/Documents/OurGameRepo/GameJamv2/MarioBird/resources/luigi.png",
-            "/Users/codecadet/Documents/OurGameRepo/GameJamv2/MarioBird/resources/wario.png",
-            "/Users/codecadet/Documents/OurGameRepo/GameJamv2/MarioBird/resources/turtle.png"};
+    private String [] characters = new String[]{"resources/mario.png",
+            "resources/luigi.png",
+            "resources/wario.png",
+            "resources/turtle.png"};
 
     public Character(double col, double row, SimpleGxGrid grid) {
         super(col, row, grid);
@@ -28,10 +28,11 @@ public class Character extends AbstractUnitPosition implements Runnable {
         characterHeight = 30;
         simpleGxGrid = grid;
         terminalVelocity = 3; // gravidade
-        double x = grid.columnToX(col);
-        double y = grid.rowToY(row);
+        x = grid.columnToX(col);
+        y = grid.rowToY(row);
+
         rectangle = new Rectangle(x, y, characterWidth, characterHeight);
-        picture = new Picture(x, y + 100, characters[0]);
+        picture = new Picture(x, y, characters[0]);
     }
 
     public int getCharacterWidth() {
@@ -103,11 +104,20 @@ public class Character extends AbstractUnitPosition implements Runnable {
                 if (speed == terminalVelocity) {
                     rectangle.translate(0, speed);
                     picture.translate(0, speed);
+
+                    // Atualizar coordenadas x e y
+                    x = rectangle.getX();
+                    y = rectangle.getY();
                 }
                 while (speed < terminalVelocity) {
                     speed++;
                     rectangle.translate(0, speed);
                     picture.translate(0, speed);
+
+                    // Atualizar coordenadas x e y
+                    x = rectangle.getX();
+                    y = rectangle.getY();
+
                     try {
                         Thread.sleep(1);
                     } catch (InterruptedException e) {
@@ -130,13 +140,15 @@ public class Character extends AbstractUnitPosition implements Runnable {
                     temp = i * dy;
                     rectangle.translate(0, -temp);
                     picture.translate(0, -temp);
+
+                    // Atualizar coordenadas x e y
+                    x = rectangle.getX();
+                    y = rectangle.getY();
                 }
                 moving = false;
             }
         }
-
     }
-
 
     public void bringToFront() {
         picture.delete();

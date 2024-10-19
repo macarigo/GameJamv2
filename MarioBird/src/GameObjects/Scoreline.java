@@ -52,17 +52,17 @@ public class Scoreline {
         x = tube.getInitialX();
     }
 
-/*    public void setCanScore(boolean canScore) {
+    public void setCanScore(boolean canScore) {
         this.canScore = canScore;
-    }*/
+    }
 
-/*    public void setReset(boolean reset) {
+       public void setReset(boolean reset) {
         this.reset = reset;
     }
 
     public boolean isReset() {
         return reset;
-    }*/
+    }
 
     public boolean canScore() {
         return !scored;
