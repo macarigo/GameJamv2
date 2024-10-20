@@ -37,10 +37,16 @@ public class DisplayScore {
         display.setText(score);
     }
 
-    public void displayHighscore(){
+    public void displayHighScore(){
         maxscore = "Highscore: " + highscore;
         displayHighscore.setText(maxscore);
+        displayHighscore.setColor(Color.WHITE);
+        displayHighscore.grow(75,25);
         displayHighscore.draw();
+    }
+
+    public void hideHighScore(){
+        displayHighscore.delete();
     }
 
     public void resetScore(){

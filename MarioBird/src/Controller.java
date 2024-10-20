@@ -5,104 +5,64 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
+import static org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent.*;
+import static org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent.KEY_ENTER;
+import static org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType.KEY_PRESSED;
+import static org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType.KEY_RELEASED;
+
 public class Controller implements KeyboardHandler {
 
     private Character character;
     private GameEngine gameEngine;
-    private int choice = 0;
-    private Background background;
 
+    public Controller(GameEngine gameEngine, Character character) {
+        this.gameEngine=gameEngine;
+        this.character=character;
 
-    public void init() {
         Keyboard keyboard = new Keyboard(this);
-
-        KeyboardEvent pressedSpace = new KeyboardEvent();
-        pressedSpace.setKey(KeyboardEvent.KEY_SPACE);
-        pressedSpace.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        keyboard.addEventListener(pressedSpace);
-
-        /*KeyboardEvent releaseSpace = new KeyboardEvent();
-        releaseSpace.setKey(KeyboardEvent.KEY_SPACE);
-        releaseSpace.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-        keyboard.addEventListener(releaseSpace);*/
-
-
-        KeyboardEvent pressedR = new KeyboardEvent();
-        pressedR.setKey(KeyboardEvent.KEY_R);
-        pressedR.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-        keyboard.addEventListener(pressedR);
-
-        KeyboardEvent pressedEnter = new KeyboardEvent();
-        pressedEnter.setKey(KeyboardEvent.KEY_ENTER);
-        pressedEnter.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-        keyboard.addEventListener(pressedEnter);
-
-        KeyboardEvent moveRight = new KeyboardEvent();
-        moveRight.setKey(KeyboardEvent.KEY_RIGHT);
-        moveRight.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-        keyboard.addEventListener(moveRight);
-
-        KeyboardEvent moveLeft = new KeyboardEvent();
-        moveLeft.setKey(KeyboardEvent.KEY_LEFT);
-        moveLeft.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-        keyboard.addEventListener(moveLeft);
-
+        addKeyboardEvent(KEY_SPACE, KEY_PRESSED, keyboard);
+        addKeyboardEvent(KEY_R, KEY_RELEASED, keyboard);
+        addKeyboardEvent(KEY_ENTER, KEY_RELEASED, keyboard);
+        addKeyboardEvent(KEY_ENTER, KEY_RELEASED, keyboard);
+        addKeyboardEvent(KEY_LEFT, KEY_RELEASED, keyboard);
+        addKeyboardEvent(KEY_RIGHT, KEY_RELEASED, keyboard);
     }
+
+    private static void addKeyboardEvent(int key, KeyboardEventType EventType, Keyboard keyboard) {
+        KeyboardEvent event = new KeyboardEvent();
+        event.setKey(key);
+        event.setKeyboardEventType(EventType);
+        keyboard.addEventListener(event);
+    }
+
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
-            character.setMoving(false);
+            character.jump();
         }
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_R) {
-            gameEngine.setGameOver(false);
-            gameEngine.setMainMenu(true);
-            gameEngine.setGamerunning(false);
+            gameEngine.restart();
         }
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_ENTER) {
-            gameEngine.setGamerunning(true);
-            gameEngine.setMainMenu(false);
-            gameEngine.setGameOver(false);
+            gameEngine.startRunning();
         }
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_RIGHT) {
-            if (!gameEngine.isGameRunning()) {
-                character.setCharacter(choice++);
-                background.hideMainMenu();
-                character.hide();
-                background.renderMainMenu();
-                character.render();
+                gameEngine.changeCharacter(1);
             }
-        }
+
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_LEFT) {
-            if (!gameEngine.isGameRunning()) {
-                character.setCharacter(choice--);
-                background.hideMainMenu();
-                character.hide();
-                background.renderMainMenu();
-                character.render();
-            }
+                gameEngine.changeCharacter(-1);
         }
     }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
-            character.setMoving(true);
+            character.jump();
         }
-    }
-
-    public void setCharacter(Character character) {
-        this.character = character;
-    }
-
-    public void setGameEngine(GameEngine gameEngine) {
-        this.gameEngine = gameEngine;
-    }
-
-    public void setBackground(Background background) {
-        this.background = background;
     }
 }

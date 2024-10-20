@@ -28,7 +28,6 @@ public class SimpleGxGrid implements Grid {
     @Override
     public void init() {
         this.field.draw();
-
     }
 
     public double getCellSize() {
@@ -95,7 +94,7 @@ public class SimpleGxGrid implements Grid {
 
     /**
      *
-     * FLOPPYPAD is used here to compensate for the differences between the position of the picture Floppy with its rectangle representation
+     * CHARACTERPAD is used here to compensate for the differences between the position of the picture Character with its rectangle representation
      *
      */
     public boolean isOutOfBoundsTop(Character character){
