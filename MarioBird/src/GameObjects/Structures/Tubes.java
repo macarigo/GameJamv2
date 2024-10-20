@@ -41,7 +41,7 @@ public class Tubes extends AbstractUnitPosition{
         startX = grid.columnToX(col);
         y = grid.rowToY(row);
         startY = grid.rowToY(row);
-        y2 = height - 40 + gap;
+        y2 = height + gap;
         startY2 = height + gap;
         rectangleTop = new Rectangle(x, y, width, this.height-20);
         rectangleBot = new Rectangle(x, y2, width, grid.getHeight() - y2);

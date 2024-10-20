@@ -6,12 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="3c79023d-d5e9-4c4c-aa06-23d45ad45a2f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameEngine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameEngine.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Character.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Character.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Menu/Background.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Menu/Background.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/DisplayScore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/DisplayScore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Grid/SimpleGxGrid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Grid/SimpleGxGrid.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Structures/Tubes.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/GameObjects/Structures/Tubes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MarioBird/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MarioBird/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameObjects/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObjects/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameObjects/Menu/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObjects/Menu/Background.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameObjects/DisplayScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObjects/DisplayScore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameObjects/Grid/SimpleGxGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObjects/Grid/SimpleGxGrid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameObjects/Structures/Tubes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObjects/Structures/Tubes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,22 +32,30 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2ncLOm08gSKUGNDJOwVkVT9xJls" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Ricardo&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ricar/Documents/GameJamv2/MarioBird&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />

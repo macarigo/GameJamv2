@@ -11,27 +11,32 @@ public class Character extends AbstractUnitPosition implements Runnable {
     private final Rectangle rectangle;
     private Picture picture;
     private final SimpleGxGrid simpleGxGrid;
-    private boolean moving = false;
+    private boolean jump = false;
     private double x;
     private double y;
-    private final double terminalVelocity;
+    private final double gravity;
     private final int characterWidth;
     private final int characterHeight;
-    private String [] characters = new String[]{"/Users/codecadet/Documents/OurGameRepo/GameJamv2/MarioBird/resources/mario.png",
-            "/Users/codecadet/Documents/OurGameRepo/GameJamv2/MarioBird/resources/luigi.png",
-            "/Users/codecadet/Documents/OurGameRepo/GameJamv2/MarioBird/resources/wario.png",
-            "/Users/codecadet/Documents/OurGameRepo/GameJamv2/MarioBird/resources/turtle.png"};
+    private int initialRectangleY;
+    private int initialPictureY;
+    private String [] characters = new String[]{"resources/mario.png",
+            "resources/luigi.png",
+            "resources/wario.png",
+            "resources/turtle.png"};
 
     public Character(double col, double row, SimpleGxGrid grid) {
         super(col, row, grid);
         characterWidth = 15;
         characterHeight = 30;
         simpleGxGrid = grid;
-        terminalVelocity = 3; // gravidade
-        double x = grid.columnToX(col);
-        double y = grid.rowToY(row);
+        gravity = 3;
+        x = grid.columnToX(col);
+        y = grid.rowToY(row);
+
         rectangle = new Rectangle(x, y, characterWidth, characterHeight);
-        picture = new Picture(x, y + 100, characters[0]);
+        initialRectangleY=rectangle.getY();
+        picture = new Picture(x, y, characters[0]);
+        initialPictureY=picture.getY();
     }
 
     public int getCharacterWidth() {
@@ -78,13 +83,8 @@ public class Character extends AbstractUnitPosition implements Runnable {
         return rectangle.getY();
     }
 
-
-    public void setMoving(boolean moving) {
-        this.moving = true;
-    }
-
-    public boolean isMoving() {
-        return moving;
+    public boolean isJump() {
+        return jump;
     }
 
     public void setX(double x) {
@@ -95,19 +95,37 @@ public class Character extends AbstractUnitPosition implements Runnable {
         this.y = y;
     }
 
+    public void jump() {
+        this.jump = true;
+    }
+
+    public void backToStart(){
+        rectangle.translate(0, (initialRectangleY-rectangle.getY()));
+        picture.translate(0, (initialPictureY-picture.getY()));
+    }
+
 
     @Override
     public void run() {
         if (!simpleGxGrid.isOutOfBoundsBot(this)) {
-            if (!moving) {
-                if (speed == terminalVelocity) {
+            if (!jump) {
+                if (speed == gravity) {
                     rectangle.translate(0, speed);
                     picture.translate(0, speed);
+
+                    // Atualizar coordenadas x e y
+                    x = rectangle.getX();
+                    y = rectangle.getY();
                 }
-                while (speed < terminalVelocity) {
+                while (speed < gravity) {
                     speed++;
                     rectangle.translate(0, speed);
                     picture.translate(0, speed);
+
+                    // Atualizar coordenadas x e y
+                    x = rectangle.getX();
+                    y = rectangle.getY();
+
                     try {
                         Thread.sleep(1);
                     } catch (InterruptedException e) {
@@ -121,7 +139,7 @@ public class Character extends AbstractUnitPosition implements Runnable {
                 }
             }
         }
-        if (moving) {
+        if (jump) {
             speed = 3; // altura do salto
             double temp = 0;
             double dy = 5; // salto
@@ -130,13 +148,15 @@ public class Character extends AbstractUnitPosition implements Runnable {
                     temp = i * dy;
                     rectangle.translate(0, -temp);
                     picture.translate(0, -temp);
+
+                    // Atualizar coordenadas x e y
+                    x = rectangle.getX();
+                    y = rectangle.getY();
                 }
-                moving = false;
+                jump = false;
             }
         }
-
     }
-
 
     public void bringToFront() {
         picture.delete();

@@ -22,11 +22,12 @@ public class CollisionDetector {
 
     public boolean isCrashed() {
         for (Tubes tube : tubs) {
-
+            // Verifica colisão com a parte de baixo do tubo (tube bottom)
             if ((character.getX() + character.getCharacterWidth() >= tube.getXBot() &&
                     character.getX() <= tube.getXBot() + tube.getWidth() &&
                     character.getY() + character.getCharacterHeight() >= tube.getYBot())) {
                 return true;
+                // Verifica colisão com a parte de cima do tubo (tube top)
             } else if (character.getX() + character.getCharacterWidth() >= tube.getXTop() &&
                     character.getX() <= tube.getXTop() + tube.getWidth() &&
                     character.getY() <= tube.getYTop() + tube.getHeightTop()) {
@@ -41,10 +42,12 @@ public class CollisionDetector {
         for (Scoreline line : scoreline) {
             if (character.getX() >= line.getX() && line.canScore()) {
                 score.setScore();
-                line.setScored();
-            } //else if (line.isReset()) {
-                //line.setCanScore(true);
-                //line.setReset(false);
+                line.setScored();// Marca a linha como já pontuada
+                // Se a linha estiver sendo resetada, pode permitir que seja pontuada novamente
+            } else if (line.isReset()) {
+                line.setCanScore(true);
+                line.setReset(false);
             }
         }
+    }
 }

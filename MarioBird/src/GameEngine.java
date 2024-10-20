@@ -4,9 +4,8 @@ import GameObjects.Grid.SimpleGxGrid;
 import GameObjects.Menu.Background;
 import GameObjects.Scoreline;
 import GameObjects.Structures.Tubes;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class GameEngine{
+public class GameEngine {
 
     private SimpleGxGrid grid;
     private Background background;
@@ -16,119 +15,56 @@ public class GameEngine{
     private DisplayScore displayScore;
     private CollisionDetector collisionDetector;
     private Controller controller;
-    private Picture gameOver;
     private static final int FPS = 60;
     private static final long maxLoopTime = 1000 / FPS;
     private Tubes tubes1, tubes2, tubes3;
     private Tubes[] tubeArray;
     private boolean gameRunning;
-    private boolean isGameOver;
+    private int characterChoice = 0;
 
-    public void setGamerunning(boolean gameRunning) {
-        this.gameRunning = gameRunning;
-    }
 
-    public void setController(Controller controller) {
-        this.controller = controller;
-    }
-
-    public void setBackground(Background background) {
-        this.background = background;
-    }
-
-    public void init() {
+    public GameEngine(){
         grid = new SimpleGxGrid(73, 45);
+        grid.init();
         background = new Background();
-        character = new Character(10, 10, grid);
+        character = new Character(10, 16, grid);
+        controller = new Controller(this, character);
+
+        initialState();
+    }
+
+    public void initialState() {
+        background.renderMainMenu();
+        character.backToStart();
+        character.render();
 
         //lots of tubes
         tubes1 = new Tubes(70, 0, grid);
         tubes2 = new Tubes(48.33d, 0, grid);
-        tubes3 = new Tubes(26.67d, 0,175, grid);
+        tubes3 = new Tubes(26.67d, 0, 175, grid);
         tubeArray = new Tubes[]{tubes1, tubes2, tubes3};
-        displayScore = new DisplayScore(grid);
 
+        displayScore = new DisplayScore(grid);
         scoreline1 = new Scoreline(grid, tubes1);
         scoreline2 = new Scoreline(grid, tubes2);
         scoreline3 = new Scoreline(grid, tubes3);
         scorelineArray = new Scoreline[]{scoreline1, scoreline2, scoreline3};
 
         collisionDetector = new CollisionDetector(character, tubeArray, scorelineArray, displayScore);
-        controller = new Controller();
-        controller.setGameEngine(this);
-        gameOver = new Picture(5, 5, "resources/game_over_v2.png");
-        grid.init();
-        background.renderMainMenu();
-        controller.setCharacter(character);
-        controller.setBackground(background);
-        controller.init();
-        gameState();
-    }
-    public void gameState(){
 
-        while(true){
-
-            if(!gameRunning){
-                background.renderMainMenu();
-                character.render();
-            }
-
-            if(gameRunning) {
-                if(background.getGameOver()!= null){
-                    background.hideGameOver();
-                }
-                background.hideMainMenu();
-                background.renderGameRunning();
-
-
-                character.bringToFront();
-                displayScore.draw();
-                for (Tubes tube: tubeArray) {
-                    tube.show();
-                }
-                run();
-                break;
-            }
-            if(isGameOver){
-                isGameOver = false;
-                init();
-
-            }
-        }
     }
 
-    public boolean isGameRunning() {
-        return gameRunning;
-    }
-
-    public void run() {
+    public void start() {
         long timestamp;
         long oldTimestamp;
         while (true) {
             oldTimestamp = System.currentTimeMillis();
             timestamp = System.currentTimeMillis();
-            character.run();
-            for (Tubes tube : tubeArray) {
-                tube.moveLeft();
-            }
-            for (Scoreline line : scorelineArray) {
-                line.moveLeft();
-            }
-            collisionDetector.incrementScore();
 
-/*            if (displayScore.getCurrentScore() % 5 == 0 && displayScore.getCurrentScore() != 0) {
-                for (Tubes tube : tubeArray) {
-                    tube.setSpeed();
-                }
-            }*/
-            if (grid.isOutOfBoundsBot(character) || grid.isOutOfBoundsTop(character) || collisionDetector.isCrashed()) {
-                background.gameOver();
-                gameOver();
-                gameRunning = false;
-                displayScore.resetScore();
-                displayScore.displayHighscore();
-                break;
+            if(gameRunning) {
+                run();
             }
+
             if (timestamp - oldTimestamp <= maxLoopTime) {
 
                 try {
@@ -138,24 +74,73 @@ public class GameEngine{
                 }
             }
         }
-        gameState();
     }
 
-    public void setGameOver(boolean gameOver) {
-        isGameOver = gameOver;
+    public void startRunning(){
+        if (!gameRunning) {
+            gameRunning = true;
+            background.hideMainMenu();
+            background.renderGameRunning();
+            displayScore.draw();
+            character.hide();
+            character.render();
+        }
     }
+
+    public void run() {
+        character.hide();
+        character.render();
+        for (Tubes tube: tubeArray) {
+            tube.show();
+        }
+        character.run();
+        for (Tubes tube : tubeArray) {
+            tube.moveLeft();
+        }
+        for (Scoreline line : scorelineArray) {
+            line.moveLeft();
+        }
+        collisionDetector.incrementScore();
+
+        if (grid.isOutOfBoundsBot(character) || grid.isOutOfBoundsTop(character) || collisionDetector.isCrashed()) {
+            gameOver();
+        }
+    }
+
     public void gameOver() {
+        gameRunning = false;
+        background.gameOver();
+
         for (Tubes tube : tubeArray) {
             tube.hide();
         }
+
         character.hide();
         for (Scoreline line : scorelineArray) {
             line.hide();
         }
+        displayScore.resetScore();
+        displayScore.displayHighScore();
     }
 
-/*    public Tubes randomTube() {
-        int selectedTube = (int) (Math.floor(Math.random() * tubeArray.length));
-        return tubeArray[selectedTube];
-    }*/
+    public void restart() {
+        if (!gameRunning){
+            background.hideGameOver();
+            displayScore.hideHighScore();
+            background.renderMainMenu();
+            initialState();
+        }
+    }
+
+    public void changeCharacter(int i) {
+        if(!gameRunning){
+            background.hideMainMenu();
+            character.hide();
+            characterChoice = characterChoice+i;
+            character.setCharacter(characterChoice);
+            background.renderMainMenu();
+            character.render();
+
+        }
+    }
 }
